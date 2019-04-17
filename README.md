@@ -1,50 +1,47 @@
-### Date created
-Bikeshare.py created on 1/27/2019 and README file created on 2/15/2019.
 
 ### Project Title
-Exploring US Bikeshare Data
-Udacity Programming in Data Science - Project II
+Resturant Menu App 
+Udacity Full Stack Nanodegree
 
 ### Description
-In this project , I have used Python to explore data related to bike share systems for three major cities in the United States—Chicago, New York City, and Washington. The script is written so that it takes in raw input to create an interactive experience in the terminal to import the data and answer interesting questions  about descriptive statistics .
+Restaurant Menu App is a web application developed using Flask, a Python framework. This application deals with a SQLite database which has Restaurants, and Menu Items. It is styled using Bootstrap.
+
+This application shows list of restaurants, and their menu items. It has the ability to create, edit, or remove any of them as well.
 
 ### Software's used
 To complete this project, you'll require the following softwares:
 
-    Python
-    A text editor, like Sublime or Atom
-    A terminal application
+    Python 3
+    A text editor, like Sublime or Atom or Visual Studio Code
+    Vagrant
+    Virtual Box 
+    A terminal application like Bash
+
 
 ### Files used
 Files
-This project contains 1 file
-    bikeshare.py
+This project contains 3 python file
+    database_setup.py    -  to create the database
+    lotsofmenus.py       -  to populate the database
+    finalproject.py      
 
-Dataset file
-This project contains 3 Dataset file
-    chicago.csv
-    new_york_city.csv
-    washington.csv
+Folders
+This project contains 2 folders
+    static            - contains the style sheets
+    templates         - HTML templates of all the files
+
     
-### Loading Project
+### Executing Project
 Requirements
-This project requires Python 3 and the following Python libraries installed:
-    Python 3
-    NumPy
-    Pandas
+To run this final project : 
 
-If you do not have Python installed yet, it is highly recommended that you install the Anaconda distribution of Python, which already has the above packages and more included.
+   1.  Navigate to the Resturant_Catalog directory inside the vagrant environment
+   2.   Run database_setup.py to create the database
+   3.   Run lotsofmenus.py to populate the database
+   4.   run finalproject.py and navigate to localhost:5000 in your browser
 
-Execution
-In a terminal or command window, navigate to the top-level project directory and run the following command:
-    python bikeshare.py
 
 ### Credits
-Assess datetime series:
-https://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.dt.html
+Udacity Full Stack Web Developer Nano Degree :
+https://www.udacity.com/course/full-stack-web-developer-nanodegree--nd004
 
-Read day of week, month, hour etc.:
-https://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.dt.html.
-
-Convert seconds to hours, minutes and seconds:
-https://stackoverflow.com/questions/775049/how-to-convert-seconds-to-hours-minutes-and-seconds
