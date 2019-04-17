@@ -1,0 +1,84 @@
+
+<html>
+    <head>
+          <!-- Latest compiled and minified CSS -->
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+          <!-- jQuery library -->
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+          <!-- Latest compiled JavaScript -->
+          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+          <link rel=stylesheet type="text/css" href="{{url_for('static',filename='styles.css')}}" >
+
+          <title>{{restaurant.name}}</title>
+    </head>
+    
+    <body class="p-3 mb-2 bg-secondary bg-body-demo " >
+      <div class="container">
+          <h1 >{{restaurant.name}}</h1>
+     
+            
+            
+                
+
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <ul>
+                        {% for message in messages %}
+                        <li><strong>{{ message }}</strong></li>
+                        {% endfor %}
+                </ul>
+                {% endif %}
+                {% endwith %}
+
+    
+    {% if items %}
+</br>
+<div class="btn-group">
+    <a class="btn btn-primary"  href="{{url_for('newMenuItem', restaurant_id = restaurant.id)}}" > New Menu Item </a>
+    <a class="btn btn-primary"  href= "{{url_for('showRestaurant')}}" > Go Back </a>
+    </div>
+  </div>
+          </br>  </br>     
+        <div class="container">   
+            <div class="row">
+                {% for i in items %}
+        
+                  <div class="col-sm-12 col-sm-6 col-md-4 col-lg-3">
+                    <div class="thumbnail">
+                      <img style="height: 200px; width: 100%; display: block;"
+        
+                      {% if i.image %}
+                        src="/uploads/{{ i.image }}"
+                      {% else %}
+                        src="/static/empty.png"
+                      {% endif %}
+                      >
+                      <div class="caption">
+                        <h3>{{i.name}}</h3>
+                        <p class="text-grayed">{{i.description}}</p>
+                        <div class="item-price">
+                          <span>{{i.price}}</span>
+                        </div>
+                        <p class="marginBottom-0">
+                          <a class="btn btn-xs btn-primary" href='{{url_for('editMenuItem', restaurant_id = restaurant.id, menu_id = i.id) }}'>Edit</a>
+                          <a class="btn btn-xs btn-warning" href = '{{url_for('deleteMenuItem', restaurant_id = restaurant.id, menu_id = i.id) }}'>Delete</a>
+                        </p>
+        
+                      </div>
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+                {%else %}
+            
+                         <p>Currently you have no Items in the restaurant</p>
+                        <a  class="btn btn-primary" href ='{{url_for('newMenuItem', restaurant_id = restaurant.id)}}'> Create New Item</a>
+                 {% endif %}
+    
+
+    </body>
+    
+</html>

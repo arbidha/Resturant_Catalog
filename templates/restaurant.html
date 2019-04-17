@@ -1,0 +1,58 @@
+
+<html>
+        <head>
+                
+            <!-- Latest compiled and minified CSS -->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+             <!-- jQuery library -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+             <!-- Latest compiled JavaScript -->
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>   
+
+            <link rel=stylesheet type="text/css" href="{{url_for('static',filename='styles.css')}}" >   
+             
+            <title>Restaurant</title>
+        </head>
+        <body class="p-3 mb-2 bg-secondary bg-body-demo ">
+       <div class="container">  
+        <h1>Restaurant</h1>
+
+    
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                
+                    {% for message in messages %}
+                    <strong>{{ message }}</strong>
+                    {% endfor %}
+                
+            {% endif %}
+            {% endwith %}
+
+            </br>
+        <a  class="btn btn-primary" href="{{url_for('newRestaurant')}}" ><h4>Add New Restaurant</h4></a>
+        <div class="table-responsive"></div>
+        <table class=" bg-table-cl table table-hover  table-condensed" >
+            <thead style="color:beige">
+                
+            </thead>
+            <tbody style="width:200%">
+            {% for r in restaurants %} 
+
+                <td><p><a href='{{url_for('showMenu', restaurant_id = r.id)}}'>{{r.name}}</p>  </a>      </td>
+                <td><a href='{{url_for('editRestaurant', restaurant_id = r.id)}}' class = "button" class="list-group-item">Edit </a></td>
+                <td><a href = '{{url_for('deleteRestaurant', restaurant_id = r.id)}}' class = "button" class="list-group-item">Delete </a></td>
+                
+            </tbody>{% endfor %}
+
+        </table>
+        </div>
+  
+        
+        
+        
+    </div> 
+        </body>
+        
+        </html>
