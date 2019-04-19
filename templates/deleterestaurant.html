@@ -1,32 +1,26 @@
-<html>
-    <head>
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-
-        <!-- jQuery library -->
-       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-        <!-- Latest compiled JavaScript -->
-       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>   
-
-       <link rel=stylesheet type="text/css" href="{{url_for('static',filename='styles.css')}}" >
-        
-       <title>Delete Restaurant</title>
-    </head>
-<body class="p-3 mb-2 bg-secondary bg-body-demo ">
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+    <div class="row banner menu">
+	<div class="col-md-11 col-md-offset-1 padding-none">    
         <h1> Delete Restaurant </h1>
-
+    </div></div>   
+    <div class="row">
+            <div class="col-md-6 col-md-offset-1 padding-top"> </br>
         <h3> Are you sure you want to delete the restaurant {{item.name}} ? </h3> 
 </br>
 
-<form action="{{url_for('deleteRestaurant',restaurant_id = restaurant_id)}}" method = 'post'>
+<form action="{{url_for('deleteRestaurant',restaurant_id = restaurant_id )}}" method = 'post'>
 
-<input type='submit' class="btn btn-primary" value = 'Delete'>
+        <button type='submit' class="btn btn-primary" value='Delete'><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
+    
 
+        <button class="btn btn-primary">   
+                <a href= "{{url_for('showRestaurant')}}">		
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancel</button>
 
 </form>
 
-<a class="btn btn-primary" href = "{{url_for('showRestaurant')}}"> Cancel </a>
-</body>
-
-</html>
+  
+    
+    {% endblock %}
