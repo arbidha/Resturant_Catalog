@@ -1,31 +1,58 @@
-<html>
-        <head>
-                
-             <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-
-        <!-- jQuery library -->
-       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-        <!-- Latest compiled JavaScript -->
-       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>   
-
-       <link rel=stylesheet type="text/css" href="{{url_for('static',filename='styles.css')}}" >
-                       
-                <title>Edit Menu</title>
-        </head>
-    <body class="p-3 mb-2 bg-secondary bg-body-demo ">
-        <h1>Edit Menu Item</h1>
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+	<div class="row divider green">
+		<div class="col-md-12"></div>
+	</div>
+	<div class="row banner menu">
+		<div class="col-md-11 col-md-offset-1 padding-none">
+			<h1>Edit Menu Item</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 col-md-offset-1 padding-top">
 
         <form action= "{{url_for('editMenuItem',restaurant_id = restaurant_id,menu_id = menu_id)}}" method = 'POST'>
+            <div class="form-group" style="color:cornsilk;">
+                <label for="name">Name:</label>
+                <input type ="text" maxlength="100" class="form-control" name="name" placeholder="{{item.name }}">
 
-            <p>Name:</p>
-            <input type = 'text' size='30' name = 'name' placeholder = '{{item.name}}'>
+                <label for="description">Description:</label>
+                <textarea class="form-control" maxlength="250" rows="3" name="description">{{item.description}}</textarea>
+
+                <label for="price">Price:</label>
+                <div class="input-group">
+                    <div class="input-group-addon">$</div>
+                    <input type ="text" maxlength="10" class="form-control" name="price" value="{{item.price}}">
+                </div>
+                <label for="course">Course:</label>
+                <div class="radio" >
+                  <label>
+                    <input type="radio" name="course" id="course1" value="Appetizer" {% if item.course == 'Appetizer'%}checked{%endif%}>Appetizer
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="course" id="course2" value="Entree" {% if item.course == 'Entree' %}checked{%endif%}>Entree
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="course" id="course3" value="Dessert" {% if item.course == 'Dessert'%}checked{%endif%}>Dessert
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="course" id="course4" value="Beverage" {%if item.course =='Beverage'%}checked{%endif%}>Beverage
+                  </label>
+                </div>
+        
             
-            <input type='submit' class="btn btn-primary" value='Edit'>
+            <button type='submit' class="btn btn-primary" value='Edit'><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Save</button>
         </form>
-            
-        <a class="btn btn-primary" href= '{{url_for('showMenu', restaurant_id = restaurant_id)}}'>Cancel</a>
+        <button class="btn btn-primary delete">   
+        <a href= '{{url_for('showMenu', restaurant_id = restaurant_id)}}'>		
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancel</button>
+        </a>
 
-       </body>
-</html>
+        {% endblock %}

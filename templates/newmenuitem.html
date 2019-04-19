@@ -1,29 +1,20 @@
-<html>
-        <head>
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+	<div class="row divider green">
+		<div class="col-md-12"></div>
+	</div>
 
-             <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-
-        <!-- jQuery library -->
-       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-        <!-- Latest compiled JavaScript -->
-       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>   
-
-       <link rel=stylesheet type="text/css" href="{{url_for('static',filename='styles.css')}}" >
-                       
-                <title>Create a New Menu </title>
-            </head>
-    <body class="p-3 mb-2 bg-secondary bg-body-demo " >
+        <div class="col-md-6 col-md-offset-1 padding-top">
         <h1>New Menu Item</h1>
         <form action="{{url_for('newMenuItem',restaurant_id = restaurant_id)}}" method = 'POST'>
+            <div class="form-group" style="color:cornsilk;">
+                <label for="name">Name:</label>
+                <input type ="text" maxlength="100" class="form-control" name="name">
+        
+                <label for="description">Description:</label>
+                <textarea class="form-control" maxlength="250" rows="3" name="description"></textarea>
 
-            <p>Name:</p>
-            
-            <input type='text' size='30' name='name'>
-            <p>Description:</p>
-            
-            <input type='text' size='30' name='description'>
             <p>Price:</p>
             
             <input type='text' size='30' name='price'>
@@ -33,9 +24,11 @@
             <input type="radio" class="text-white"  name="course" value="Dessert"> Dessert <br>
             <input type="radio" class="text-white" name="course" value="Beverage"> Beverage  <br>
             <br> <br>
-            <input type='submit' class="btn btn-primary" value='Create'>
-            
-            </form>
-            <a class="btn btn-primary" href= '{{url_for('showMenu', restaurant_id = restaurant_id)}}'>Cancel</a>
-    </body>
-</html>
+            <button type='submit' class="btn btn-primary" value='Edit'><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Create </button>
+        </form>
+        <button class="btn btn-primary delete">   
+            <a href= '{{url_for('showMenu', restaurant_id = restaurant_id)}}'>		
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancel</button>
+            </a>
+
+            {% endblock %}

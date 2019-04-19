@@ -74,6 +74,9 @@ p a {
     float: left;
 }
 
+[type = radio]{
+    color:#CCCCCC;
+}
 .description {}
 .price 
 {

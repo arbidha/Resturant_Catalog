@@ -1,22 +1,7 @@
 
-<html>
-    <head>
-          <!-- Latest compiled and minified CSS -->
-          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-
-          <!-- jQuery library -->
-          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-          <!-- Latest compiled JavaScript -->
-          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
-          <link rel=stylesheet type="text/css" href="{{url_for('static',filename='styles.css')}}" >
-
-          <title>{{restaurant.name}}</title>
-    </head>
-    
-    <body class="p-3 mb-2 bg-secondary bg-body-demo " >
-      <div class="container">
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
           <h1 >{{restaurant.name}}</h1>
      
             
@@ -36,10 +21,24 @@
     
     {% if items %}
 </br>
-<div class="btn-group">
-    <a class="btn btn-primary"  href="{{url_for('newMenuItem', restaurant_id = restaurant.id)}}" > New Menu Item </a>
-    <a class="btn btn-primary"  href= "{{url_for('showRestaurant')}}" > Go Back </a>
-    </div>
+<div class="row padding-top padding-bottom">
+                
+  <div class="col-md-10 padding-none">
+      <a href="{{url_for('newMenuItem', restaurant_id = restaurant.id)}}" >
+          <button class="btn btn-default" id="new-menu-item">
+              <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> Add Menu Item
+          </button>
+      </a>
+
+      <a href="{{url_for('showRestaurant')}}" >
+        <button class="btn btn-default" id="restaurant">
+            <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span> Back to Resturant
+        </button>
+    </a>
+  </div>
+
+</div>
+
   </div>
           </br>  </br>     
         <div class="container">   
@@ -79,6 +78,4 @@
                  {% endif %}
     
 
-    </body>
-    
-</html>
+                 {% endblock %}
