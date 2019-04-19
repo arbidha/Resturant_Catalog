@@ -1,22 +1,7 @@
-
-<html>
-        <head>
-                
-            <!-- Latest compiled and minified CSS -->
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-
-             <!-- jQuery library -->
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-             <!-- Latest compiled JavaScript -->
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>   
-
-            <link rel=stylesheet type="text/css" href="{{url_for('static',filename='styles.css')}}" >   
-             
-            <title>Restaurant</title>
-        </head>
-        <body class="p-3 mb-2 bg-secondary bg-body-demo ">
-       <div class="container">  
+    {% extends "main.html" %}
+    {% block content %}
+    {% include "header.html" %}
+       
         <h1>Restaurant</h1>
 
     
@@ -31,18 +16,30 @@
             {% endwith %}
 
             </br>
-        <a  class="btn btn-primary" href="{{url_for('newRestaurant')}}" ><h4>Add New Restaurant</h4></a>
+
+            <div class="row padding-top padding-bottom">
+                
+                <div class="col-md-10 padding-none">
+                    <a href="{{url_for('newRestaurant')}}" >
+                        <button class="btn btn-default" id="new-restaurant">
+                            <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> Add Restaurant
+                        </button>
+                    </a>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+        </br>
         <div class="table-responsive"></div>
-        <table class=" bg-table-cl table table-hover  table-condensed" >
+        <table class=" bg-table-cl table table-condensed" >
             <thead style="color:beige">
                 
             </thead>
             <tbody style="width:200%">
             {% for r in restaurants %} 
-
-                <td><p><a href='{{url_for('showMenu', restaurant_id = r.id)}}'>{{r.name}}</p>  </a>      </td>
-                <td><a href='{{url_for('editRestaurant', restaurant_id = r.id)}}' class = "button" class="list-group-item">Edit </a></td>
-                <td><a href = '{{url_for('deleteRestaurant', restaurant_id = r.id)}}' class = "button" class="list-group-item">Delete </a></td>
+            
+            <td><p><a href='{{url_for('showMenu', restaurant_id = r.id)}}'> <span class="glyphicon glyphicon-leaf" aria-hidden="true"></span> {{r.name}}</p>  </a>      </td>
+                <td><a href='{{url_for('editRestaurant', restaurant_id = r.id)}}' class = "button" class="list-group-item"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>  Edit </a></td>
+                <td><a href = '{{url_for('deleteRestaurant', restaurant_id = r.id)}}' class = "button" class="list-group-item"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>  Delete </a></td>
                 
             </tbody>{% endfor %}
 
@@ -53,6 +50,4 @@
         
         
     </div> 
-        </body>
-        
-        </html>
+    {% endblock %}
